@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917" />
+      <stop offset="50%" stop-color="#0c0a09" />
+      <stop offset="100%" stop-color="#292524" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded corners -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  <rect width="512" height="512" rx="112" fill="none" stroke="url(#accent)" stroke-width="8" opacity="0.6" />
+  
+  <!-- Outer Globe Ring -->
+  <circle cx="256" cy="240" r="140" fill="none" stroke="url(#blueGlow)" stroke-width="8" opacity="0.4" />
+  <ellipse cx="256" cy="240" rx="60" ry="140" fill="none" stroke="url(#blueGlow)" stroke-width="6" opacity="0.3" />
+  <line x1="116" y1="240" x2="396" y2="240" stroke="url(#blueGlow)" stroke-width="6" opacity="0.3" />
+  
+  <!-- Central Badge Icon -->
+  <!-- Graduation Cap -->
+  <path d="M 256 140 L 370 196 L 256 252 L 142 196 Z" fill="url(#accent)" />
+  <path d="M 180 220 L 180 270 Q 256 320 332 270 L 332 220 L 256 260 Z" fill="#d97706" />
+  <!-- Tassel -->
+  <path d="M 370 196 L 390 240 L 382 270" stroke="#fbbf24" stroke-width="6" fill="none" stroke-linecap="round" />
+  <circle cx="382" cy="275" r="8" fill="#fbbf24" />
+  
+  <!-- Play Symbol Accent -->
+  <polygon points="236,200 290,230 236,260" fill="#ffffff" />
+  
+  <!-- Typography / Ribbon -->
+  <rect x="96" y="360" width="320" height="64" rx="20" fill="url(#accent)" />
+  <text x="256" y="404" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="900" fill="#0c0a09" text-anchor="middle" letter-spacing="2">EDUZONE</text>
+</svg>

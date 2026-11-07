@@ -1,0 +1,8 @@
+{
+  "name": "Remix EduZone Peru - Dokumenter Interaktif",
+  "description": "Aplikasi video dokumenter interaktif 6 scene tentang negara Peru (Geografi, Sejarah, Bahasa, Pakaian, Budaya, dan Kuliner) dengan narasi bilingual, musik Andean, dan kuis trivia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

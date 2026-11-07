@@ -1,0 +1,12 @@
+.git
+.github
+.aistudio
+.cache
+coverage
+*.log
+.DS_Store
+.env*
+!.env.example
+public/assets/aistudio
+dist/assets/aistudio
+node_modules/.vite

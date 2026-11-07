@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduZone World - Interactive Audiovisual Encyclopedia</title>
+    <meta name="description" content="Interactive 6-scene audiovisual encyclopedia documentary application for world nations (Geography, History, Language, Attire, Music, and Gastronomy) with synchronized Wikipedia factual data, natural narrator voices, and cultural soundscapes." />
+    <meta property="og:title" content="EduZone World - Interactive Audiovisual Encyclopedia" />
+    <meta property="og:description" content="Interactive 6-scene audiovisual encyclopedia documentary application for world nations with synchronized Wikipedia factual data and cultural music." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0c0a09" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="EduZone" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        const NativeWebSocket = window.WebSocket;
+        if (!NativeWebSocket) return;
+
+        window.WebSocket = function(url, protocols) {
+          const isViteHmr =
+            protocols === 'vite-hmr' ||
+            (Array.isArray(protocols) && protocols.includes('vite-hmr')) ||
+            (typeof url === 'string' && (url.includes('vite-hmr') || url.includes('/@vite')));
+
+          if (isViteHmr) {
+            // Mock Vite HMR WebSocket in Cloud Run iframe sandbox
+            const listeners = {};
+            const mock = {
+              url: String(url),
+              readyState: 1, // OPEN
+              OPEN: 1,
+              CONNECTING: 0,
+              CLOSING: 2,
+              CLOSED: 3,
+              send: function() {},
+              close: function() {
+                mock.readyState = 3;
+              },
+              addEventListener: function(type, fn) {
+                listeners[type] = listeners[type] || [];
+                listeners[type].push(fn);
+              },
+              removeEventListener: function(type, fn) {
+                if (!listeners[type]) return;
+                listeners[type] = listeners[type].filter(function(f) { return f !== fn; });
+              },
+              dispatchEvent: function(event) {
+                const fns = listeners[event.type] || [];
+                for (let i = 0; i < fns.length; i++) {
+                  try { fns[i](event); } catch (e) {}
+                }
+              }
+            };
+
+            setTimeout(function() {
+              mock.dispatchEvent(new Event('open'));
+              mock.dispatchEvent(new MessageEvent('message', {
+                data: JSON.stringify({ type: 'connected' })
+              }));
+            }, 30);
+
+            return mock;
+          }
+
+          return new NativeWebSocket(url, protocols);
+        };
+
+        window.WebSocket.prototype = NativeWebSocket.prototype;
+        window.WebSocket.CONNECTING = 0;
+        window.WebSocket.OPEN = 1;
+        window.WebSocket.CLOSING = 2;
+        window.WebSocket.CLOSED = 3;
+
+        window.addEventListener('unhandledrejection', function(e) {
+          if (e && e.reason && String(e.reason).includes('WebSocket closed without opened')) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        });
+      })();
+    </script>
+  </head>
+  <body class="bg-stone-950 text-stone-100 antialiased selection:bg-amber-600 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
